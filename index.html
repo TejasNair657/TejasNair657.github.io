@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tejas Nair | Portfolio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --blue: #1A56A0;
+      --dark: #1A1A2E;
+      --gray: #555;
+      --light: #f5f7fb;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+    }
+
+    /* NAV */
+    nav {
+      background: var(--dark);
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .logo {
+      color: var(--white);
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    nav .logo span { color: #4da6ff; }
+    nav ul { list-style: none; display: flex; gap: 28px; }
+    nav ul a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: #4da6ff; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--dark) 0%, #16213e 60%, #0f3460 100%);
+      color: white;
+      padding: 100px 40px;
+      text-align: center;
+    }
+    .hero h1 { font-size: 3rem; margin-bottom: 12px; }
+    .hero h1 span { color: #4da6ff; }
+    .hero p {
+      font-size: 1.15rem;
+      color: #aac4e8;
+      max-width: 560px;
+      margin: 0 auto 30px;
+      line-height: 1.7;
+    }
+    .hero .badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
+    .badge {
+      background: rgba(77,166,255,0.15);
+      border: 1px solid #4da6ff;
+      color: #4da6ff;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--blue);
+      color: white;
+      padding: 12px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 6px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn:hover { background: #1464c0; transform: translateY(-2px); }
+    .btn.outline {
+      background: transparent;
+      border: 2px solid #4da6ff;
+      color: #4da6ff;
+    }
+    .btn.outline:hover { background: #4da6ff; color: white; }
+
+    /* SECTIONS */
+    section { padding: 70px 40px; max-width: 1000px; margin: 0 auto; }
+    section h2 {
+      font-size: 1.8rem;
+      color: var(--blue);
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--blue);
+      display: inline-block;
+    }
+    .section-sub { color: var(--gray); margin-bottom: 40px; margin-top: 6px; }
+
+    /* ABOUT */
+    .about-grid { display: flex; gap: 50px; align-items: center; flex-wrap: wrap; }
+    .about-text { flex: 1; min-width: 260px; }
+    .about-text p { line-height: 1.8; color: #444; margin-bottom: 14px; font-size: 1rem; }
+    .info-list { list-style: none; }
+    .info-list li { padding: 6px 0; font-size: 0.95rem; color: #444; }
+    .info-list li span { font-weight: 600; color: var(--dark); min-width: 100px; display: inline-block; }
+
+    /* SKILLS */
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+    .skill-tag {
+      background: white;
+      border: 1.5px solid #c8d8f0;
+      color: var(--dark);
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .skill-tag.highlight { border-color: var(--blue); color: var(--blue); font-weight: 600; }
+
+    /* PROJECTS */
+    .projects-grid { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 30px; }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 28px;
+      flex: 1;
+      min-width: 280px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+      border-top: 4px solid var(--blue);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .card h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--dark); }
+    .card p { font-size: 0.92rem; color: #555; line-height: 1.7; margin-bottom: 16px; }
+    .card .tech { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tech-tag {
+      background: #eef3fb;
+      color: var(--blue);
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* CERTIFICATIONS */
+    .cert-list { margin-top: 30px; display: flex; flex-direction: column; gap: 18px; }
+    .cert-item {
+      background: white;
+      border-radius: 8px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .cert-icon {
+      width: 48px; height: 48px;
+      background: #eef3fb;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .cert-info h4 { font-size: 1rem; color: var(--dark); margin-bottom: 4px; }
+    .cert-info p { font-size: 0.88rem; color: var(--gray); }
+
+    /* CONTACT */
+    .contact-wrapper {
+      background: var(--dark);
+      color: white;
+      padding: 70px 40px;
+      text-align: center;
+    }
+    .contact-wrapper h2 { color: #4da6ff; border-color: #4da6ff; }
+    .contact-wrapper p { color: #aac4e8; margin: 14px 0 30px; font-size: 1rem; }
+    .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(77,166,255,0.12);
+      border: 1px solid #4da6ff;
+      color: #4da6ff;
+      padding: 10px 22px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: background 0.2s;
+    }
+    .contact-link:hover { background: rgba(77,166,255,0.25); }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111827;
+      color: #666;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      nav ul { gap: 14px; }
+      section { padding: 50px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Tejas<span>.</span>dev</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Hi, I'm <span>Tejas Nair</span> 👋</h1>
+  <p>IT undergraduate at MITAOE, Pune. Python enthusiast with Cisco certifications and a passion for building real things with code.</p>
+  <div class="badges">
+    <span class="badge">🐍 Python Certified</span>
+    <span class="badge">🎓 B.Tech IT — MITAOE</span>
+    <span class="badge">📍 Pune, India</span>
+  </div>
+  <a href="#projects" class="btn">View My Work</a>
+  <a href="https://github.com/TejasNair657" class="btn outline" target="_blank">GitHub ↗</a>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>About Me</h2>
+  <p class="section-sub">Who I am and what I'm working towards</p>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a 2nd-year B.Tech Information Technology student at MIT Academy of Engineering, Alandi, Pune. I have a strong interest in Python programming and backend development, and I've completed both Python Essentials certifications through the Cisco Networking Academy.</p>
+      <p>I enjoy building practical tools and learning by doing. I'm currently seeking a Python internship where I can apply my skills, grow under experienced mentors, and contribute meaningfully to real projects.</p>
+      <ul class="info-list">
+        <li><span>Degree:</span> B.Tech in IT</li>
+        <li><span>College:</span> MITAOE, Pune</li>
+        <li><span>CGPA:</span> 6.9 / 10</li>
+        <li><span>Year:</span> 2nd Year (2024–2028)</li>
+        <li><span>Available:</span> Internship / Part-time</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <h2>Technical Skills</h2>
+  <p class="section-sub">Languages, tools, and concepts I work with</p>
+  <div class="skills-grid">
+    <span class="skill-tag highlight">Python</span>
+    <span class="skill-tag highlight">SQL</span>
+    <span class="skill-tag">HTML5</span>
+    <span class="skill-tag">CSS3</span>
+    <span class="skill-tag">Git & GitHub</span>
+    <span class="skill-tag">Tableau</span>
+    <span class="skill-tag">VS Code</span>
+    <span class="skill-tag">MySQL</span>
+    <span class="skill-tag">OOP</span>
+    <span class="skill-tag">File Handling</span>
+    <span class="skill-tag">Exception Handling</span>
+    <span class="skill-tag">Data Structures (Basics)</span>
+    <span class="skill-tag">Responsive Design</span>
+    <span class="skill-tag">Flexbox</span>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2>Projects</h2>
+  <p class="section-sub">Things I've built</p>
+  <div class="projects-grid">
+    <div class="card">
+      <h3>🎓 Student Grade Analyzer</h3>
+      <p>A CLI-based Python tool that reads student marks from a CSV file, computes averages, assigns letter grades (A+ to F), ranks students, and displays a formatted summary table with class statistics.</p>
+      <div class="tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">OOP</span>
+        <span class="tech-tag">File I/O</span>
+        <span class="tech-tag">CSV</span>
+        <span class="tech-tag">Exception Handling</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3>🌐 Personal Portfolio Website</h3>
+      <p>This responsive portfolio website built with pure HTML5 and CSS3. Features a sticky navbar, hero section, project cards, skills showcase, and contact section. Deployed on GitHub Pages.</p>
+      <div class="tech">
+        <span class="tech-tag">HTML5</span>
+        <span class="tech-tag">CSS3</span>
+        <span class="tech-tag">Flexbox</span>
+        <span class="tech-tag">Responsive</span>
+        <span class="tech-tag">GitHub Pages</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <h2>Certifications</h2>
+  <p class="section-sub">Verified credentials from recognised programs</p>
+  <div class="cert-list">
+    <div class="cert-item">
+      <div class="cert-icon">🐍</div>
+      <div class="cert-info">
+        <h4>Python Essentials 1 — Cisco Networking Academy</h4>
+        <p>MIT Academy of Engineering, Alandi Pune &nbsp;|&nbsp; Completed: April 2025</p>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">🐍</div>
+      <div class="cert-info">
+        <h4>Python Essentials 2 — Cisco Networking Academy</h4>
+        <p>MIT Academy of Engineering, Alandi Pune &nbsp;|&nbsp; Completed: April 2025</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-wrapper" id="contact">
+  <section style="padding: 0; max-width: 700px;">
+    <h2>Get In Touch</h2>
+    <p>I'm actively looking for Python internship opportunities. Feel free to reach out!</p>
+    <div class="contact-links">
+      <a href="mailto:202401080063@mitaoe.ac.in" class="contact-link">✉️ 202401080063@mitaoe.ac.in</a>
+      <a href="tel:+918446388521" class="contact-link">📞 +91 8446388521</a>
+      <a href="https://github.com/TejasNair657" target="_blank" class="contact-link">💻 GitHub</a>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <p>© 2025 Tejas Nair · Built with HTML & CSS · Hosted on GitHub Pages</p>
+</footer>
+
+</body>
+</html>
